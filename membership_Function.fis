@@ -1,0 +1,79 @@
+[System]
+Name='membership_Function'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=2
+NumRules=25
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Distance'
+Range=[0 5000]
+NumMFs=5
+MF1='very_close':'trapmf',[0 0 50 100]
+MF2='close':'trimf',[100 250 500]
+MF3='medium':'trapmf',[400 700 900 1200]
+MF4='far':'trapmf',[800 1000 1250 1800]
+MF5='very_far':'trapmf',[1500 2000 5000 5000]
+
+[Input2]
+Name='Angle_to_destination'
+Range=[-180 180]
+NumMFs=5
+MF1='big_clockwise':'trapmf',[-180 -180 -90 -75]
+MF2='clockwise':'trimf',[-125 -50 -5]
+MF3='medium':'trimf',[-10 0 10]
+MF4='counterclockwise':'trimf',[5 50 125]
+MF5='big_counterclockwise':'trapmf',[75 90 180 180]
+
+[Output1]
+Name='New_speed'
+Range=[0 10]
+NumMFs=5
+MF1='very_slow':'trapmf',[0 0 1 1.5]
+MF2='slow':'trimf',[1 2 3]
+MF3='medium':'trimf',[2 3 4.5]
+MF4='fast':'trimf',[4 5 7]
+MF5='very_fast':'trapmf',[6 8 10 10]
+
+[Output2]
+Name='angular_velocity'
+Range=[-90 90]
+NumMFs=5
+MF1='fast_cw':'trapmf',[-90 -90 -60 -40]
+MF2='cw':'trimf',[-70 -30 -5]
+MF3='zero':'trimf',[-10 0 10]
+MF4='ccw':'trimf',[5 30 70]
+MF5='fast_ccw':'trapmf',[40 60 90 90]
+
+[Rules]
+1 1, 1 1 (1) : 1
+1 2, 1 2 (1) : 1
+1 3, 1 3 (1) : 1
+1 4, 1 4 (1) : 1
+1 5, 1 5 (1) : 1
+2 1, 1 1 (1) : 1
+2 2, 1 2 (1) : 1
+2 3, 2 3 (1) : 1
+2 4, 1 4 (1) : 1
+2 5, 1 5 (1) : 1
+3 1, 1 1 (1) : 1
+3 2, 2 2 (1) : 1
+3 3, 3 3 (1) : 1
+3 4, 2 4 (1) : 1
+3 5, 1 5 (1) : 1
+4 1, 1 1 (1) : 1
+4 2, 3 2 (1) : 1
+4 3, 4 3 (1) : 1
+4 4, 3 4 (1) : 1
+4 5, 1 5 (1) : 1
+5 1, 1 1 (1) : 1
+5 2, 3 2 (1) : 1
+5 3, 5 3 (1) : 1
+5 4, 3 4 (1) : 1
+5 5, 1 5 (1) : 1
